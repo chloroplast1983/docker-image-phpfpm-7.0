@@ -2,7 +2,7 @@
 
 FROM registry.cn-hangzhou.aliyuncs.com/marmot/phpfpm-7.0-base:1.0 
 ADD ./libmemcached-1.0.18.tar.gz /data/php7extension/libmemcached
-ADD ./php7redis.tar.gz /data/php7extension/redis
+ADD ./redis-3.1.2.tgz /data/php7extension/redis
 ADD ./php7memcached.tar.gz /data/php7extension/memcached
 ADD ./php7apcu.tar.gz /data/php7extension/apcu
 ADD ./composer.phar /usr/local/bin/composer
