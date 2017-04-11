@@ -2,7 +2,6 @@
 
 FROM registry.cn-hangzhou.aliyuncs.com/marmot/phpfpm-7.0-base:1.0 
 ADD ./libmemcached-1.0.18.tar.gz /data/php7extension/libmemcached
-ADD ./redis-3.1.2.tgz /data/php7extension/redis
 ADD ./php7memcached.tar.gz /data/php7extension/memcached
 ADD ./php7apcu.tar.gz /data/php7extension/apcu
 ADD ./composer.phar /usr/local/bin/composer
@@ -31,14 +30,7 @@ RUN apt-get update && apt-get install -y zlib1g-dev git libmemcached-dev  && rm 
 && make install \
 && make clean \
 && echo "extension=apcu.so" > /usr/local/etc/php/conf.d/apcu.ini \
-&& pecl install pthreads \
-&& echo "extension=pthreads.so" > /usr/local/etc/php/php-cli.ini \
-&& cd /data/php7extension/redis/ \
-&& phpize \
-&& ./configure \
-&& make \
-&& make install \
-&& make clean \
+&& pecl install redis \
 && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
 && pecl install mongodb \
 && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini \
