@@ -6,6 +6,7 @@ ADD ./php7memcached.tar.gz /data/php7extension/memcached
 ADD ./php7apcu.tar.gz /data/php7extension/apcu
 ADD ./composer.phar /usr/local/bin/composer
 ADD ./confd /usr/local/bin/confd
+ADD ./marmot.so /usr/local/lib/php/extensions/no-debug-zts-20151012/
 
 RUN apt-get update && apt-get install -y zlib1g-dev git libmemcached-dev  && rm -r /var/lib/apt/lists/* \ 
 && chmod 755 /usr/local/bin/composer \
@@ -34,6 +35,7 @@ RUN apt-get update && apt-get install -y zlib1g-dev git libmemcached-dev  && rm 
 && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
 && pecl install mongodb \
 && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini \
+&& echo "extension=marmot.so" > /usr/local/etc/php/conf.d/marmot.ini \
 && set -ex \
 && { \
         echo 'zend_extension=opcache.so'; \
