@@ -49,7 +49,6 @@ RUN apt-get update && apt-get install -y zlib1g-dev git libmemcached-dev  && rm 
         echo "memory_limit = '256M'"; \
         echo 'display_errors = off'; \
         echo 'html_errors  = off'; \
-        echo 'error_reporting = E_ALL'; \
         echo 'log_errors = on'; \
         echo 'expose_php = off'; \
 } | tee /usr/local/etc/php/conf.d/core.ini \
