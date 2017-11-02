@@ -31,9 +31,9 @@ RUN apt-get update && apt-get install -y zlib1g-dev git libmemcached-dev  && rm 
 && make install \
 && make clean \
 && echo "extension=apcu.so" > /usr/local/etc/php/conf.d/apcu.ini \
-&& pecl install redis \
+&& pecl install redis-3.1.3 \
 && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
-&& pecl install mongodb \
+&& pecl install mongodb-1.2.10 \
 && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini \
 && echo "extension=marmot.so" > /usr/local/etc/php/conf.d/marmot.ini \
 && set -ex \
@@ -60,3 +60,5 @@ RUN apt-get update && apt-get install -y zlib1g-dev git libmemcached-dev  && rm 
 -e 's/;request_slowlog_timeout = 0/request_slowlog_timeout = 5s/1' \
 /usr/local/etc/php-fpm.d/www.conf \
 && rm -rf /data/php7extension \
+&& ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+&& echo "Asia/Shanghai" > /etc/timezone
